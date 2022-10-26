@@ -1,1 +1,44 @@
-Arquivo teste
+import mysql.connector
+
+conexao = mysql.connector.connect(
+    host='localhost',
+    user='root',
+    password='55335904WIFI',
+    database='historico_encomendas')
+
+cursor = conexao.cursor()
+
+''' CREATE '''
+# codigo = "GBB860675092"
+# nome_pessoa = "Daniel Baisso"
+# tipo_encomenda = "Caixa Pequena"
+# nome_funcionario = "Jonas Santos"
+#
+# comando = f'INSERT INTO Encomendas (Codigo, Nome_Pessoa, Tipo_Encomenda, ' \
+#           f'Nome_Funcionario) VALUES ("{codigo}", "{nome_pessoa}", "{tipo_encomenda}", "{nome_funcionario}")'
+# cursor.execute(comando)
+# conexao.commit()
+
+''' READ '''
+comando = 'SELECT * FROM Encomendas'
+cursor.execute(comando)
+resultado = cursor.fetchall()
+
+for idd, cod, nome, n, caixa, func, m in resultado:
+    print(f'({idd}) Código: {cod} | Nome: {nome} | Tipo: {caixa} | Funcionário: {func}')
+
+''' UPDATE '''
+# tipo = "Envelope"
+# id = 1
+# comando = f'UPDATE Encomendas SET Tipo_Encomenda = "{tipo}" WHERE Id = {1}'
+# cursor.execute(comando)
+# conexao.commit()
+
+''' DELETE '''
+# tipo = "Envelope"
+# comando = f'DELETE FROM Encomendas WHERE Tipo_Encomenda = "{tipo}"'
+# cursor.execute(comando)
+# conexao.commit()
+
+cursor.close()
+conexao.close()
